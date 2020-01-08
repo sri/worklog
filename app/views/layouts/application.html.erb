@@ -4,12 +4,15 @@
     <title>WorkLog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag 'application', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

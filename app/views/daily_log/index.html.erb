@@ -1,13 +1,25 @@
-<%= form_with url: daily_log_index_path do %>
-  <%= text_area_tag(:note, nil, autofocus: true) %> <%= submit_tag("Update") %>
-<% end %>
-
-Daily Logs:
-
-<% @daily_logs.each do |daily_log| %>
-<div>
-  <%= daily_log.created_at.strftime("%a %b %-d, %-I:%M%P") %><br/>
-  <%= daily_log.note %>
-</div>
-<hr/>
-<% end %>
+<section class="section">
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <%= form_with url: daily_log_index_path do %>
+        <%= text_area_tag(:note, nil, autofocus: true, rows: 40, cols: 30) %> <%= submit_tag("Update") %>
+      <% end %>
+    </div>
+    <div class="column">
+     <% @daily_logs.each do |timestamp, daily_logs| %>
+       <% next if daily_logs.empty? %>
+       <article class="message">
+         <div class="message-header">
+           <p><%= daily_logs.first.created_at.strftime("%a %b %-d") %></p>
+         </div>
+         <div class="message-body">
+           <% daily_logs.each do |daily_log| %>
+             <%= daily_log.note %>
+             <hr/>
+           <% end %>
+         </div>
+       </article>
+     <% end %>
+    </div>
+  </div>
+</section>
